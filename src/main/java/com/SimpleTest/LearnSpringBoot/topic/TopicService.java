@@ -20,5 +20,9 @@ public class TopicService {
 	public List<Topics> getAllToipics(){
 		return listOfTopics;
 	}
+	
+	public Topics getTopic(String id){
+		return listOfTopics.stream().filter(t->t.getId().equals(id)).findFirst().get();
+	}
 
 }
