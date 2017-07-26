@@ -11,7 +11,9 @@ public class Topics {
 	private String name;
 	private String discription;
 	
-	
+	public Topics() {
+		
+	}
 	
 	public Topics(String id, String name, String discription) {
 		this.id = id;
