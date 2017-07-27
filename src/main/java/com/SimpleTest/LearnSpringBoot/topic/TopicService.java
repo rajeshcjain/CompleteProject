@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.SimpleTest.LearnSpringBoot.model.Topics;
@@ -12,51 +13,33 @@ import com.SimpleTest.LearnSpringBoot.model.Topics;
 @Service
 public class TopicService {
 	
-	List<Topics> listOfTopics = new ArrayList<Topics>(Arrays.asList(
-			new Topics("1","name","d1"),
-			new Topics("2","name2","d2"),
-			new Topics("3","name3","d3"),
-			new Topics("4","name4","d4")));
+	@Autowired
+	private TopicDao topicDao;
 	
 	
 	public List<Topics> getAllToipics(){
-		return listOfTopics;
+		
+		Iterable<Topics> itr = topicDao.findAll();
+		List<Topics> topic = new ArrayList<Topics>();
+		itr.forEach(topic::add);
+		return topic;
+		
 	}
 	
 	public Topics getTopic(String id){
-		return listOfTopics.stream().filter(t->t.getId().equals(id)).findFirst().get();
+		return topicDao.findOne(id);
 	}
 	
 	public void addTopics(Topics topic) {
-		listOfTopics.add(topic);
+		topicDao.save(topic);
 	}
 	
 	public void deleteTopics(String id) {
-		int size = listOfTopics.size();
-		int i = 0;
-		
-		while(i <= size) {
-			Topics topic = listOfTopics.get(i);
-			if( topic.getId().equals(id)) {
-				break;
-			}
-			i++;
-		}
-		
-		if( i < size) {
-		listOfTopics.remove(i);
-		}
+		topicDao.delete(id);
 	}
 	
 	public void updateTopics(Topics topic,String id) {
-		
-		for(int i=0;i< listOfTopics.size();i++) {
-			Topics t = listOfTopics.get(i);
-			if(topic.getId().equals(t.getId())) {
-				break;
-			}
-			listOfTopics.set(i, topic);
-		}
+		topicDao.save(topic);
 	}
 
 }

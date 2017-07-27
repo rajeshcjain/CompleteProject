@@ -1,26 +1,22 @@
 package com.SimpleTest.LearnSpringBoot.model;
 
-
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
-@Entity
-public class Topics {
+public class Course {
 	
 	@Id
 	private String id;
 	private String name;
 	private String discription;
 	
-	public Topics() {
+	public Course() {
 		
 	}
 	
-	public Topics(String id, String name, String discription) {
+	public Course(String id, String name, String discription) {
 		this.id = id;
 		this.name = name;
 		this.discription = discription;
@@ -66,7 +62,7 @@ public class Topics {
 			return true;
 		}
 		
-		final Topics otherObject = (Topics) obj;
+		final Course otherObject = (Course) obj;
 		
 		return new EqualsBuilder().append(this.id, otherObject.id)
 				.append(this.discription, otherObject.discription)
