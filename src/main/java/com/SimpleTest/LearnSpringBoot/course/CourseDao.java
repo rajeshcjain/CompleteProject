@@ -11,6 +11,6 @@ import com.SimpleTest.LearnSpringBoot.model.Course;
 @Service
 public interface CourseDao extends CrudRepository<Course, String>{
 	
-	public List<Course> getCoursesByTopic(String topicId);
+	//public List<Course> findByTopicsid(String topicsId);
 
 }

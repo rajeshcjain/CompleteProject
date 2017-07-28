@@ -18,11 +18,11 @@ public class CourseService {
 	private CourseDao courseDao;
 	
 	
-	public List<Course> getAllCourses(){
+	public List<Course> getAllCourses(String topicId){
 		
-		Iterable<Course> itr = courseDao.findAll();
+		//List<Course> course = courseDao.findByTopicsid(topicId);
 		List<Course> course = new ArrayList<Course>();
-		itr.forEach(course::add);
+		
 		return course;
 		
 	}
