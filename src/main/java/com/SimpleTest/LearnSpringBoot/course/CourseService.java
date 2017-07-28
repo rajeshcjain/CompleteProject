@@ -35,7 +35,7 @@ public class CourseService {
 		courseDao.save(course);
 	}
 	
-	public void deleteTopics(String id) {
+	public void deleteCourse(String id) {
 		courseDao.delete(id);
 	}
 	

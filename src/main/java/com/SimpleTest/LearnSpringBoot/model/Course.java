@@ -1,10 +1,13 @@
 package com.SimpleTest.LearnSpringBoot.model;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+@Entity
 public class Course {
 	
 	@Id
@@ -12,14 +15,28 @@ public class Course {
 	private String name;
 	private String discription;
 	
+	@ManyToOne
+	private Topics topics;
+	
+	
+
+	public void setTopics(Topics topics) {
+		this.topics = topics;
+	}
+
 	public Course() {
 		
 	}
 	
-	public Course(String id, String name, String discription) {
+	public Course(String id, String name, String discription,String topicId) {
 		this.id = id;
 		this.name = name;
 		this.discription = discription;
+		this.topics = new Topics(topicId,"","");
+	}
+	
+	public Topics getTopics() {
+		return topics;
 	}
 
 	
@@ -27,22 +44,12 @@ public class Course {
 		return id;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getDiscription() {
 		return discription;
 	}
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-	
 	
 	@Override
 	public int hashCode() {
@@ -50,6 +57,7 @@ public class Course {
 				.append(this.name)
 				.append(this.discription)
 				.append(this.id)
+				.append(this.topics)
 				.toHashCode();
 
 	}
@@ -67,6 +75,7 @@ public class Course {
 		return new EqualsBuilder().append(this.id, otherObject.id)
 				.append(this.discription, otherObject.discription)
 				.append(this.name, otherObject.name)
+				.append(this.topics, otherObject.topics)
 				.isEquals();
 	}
 
